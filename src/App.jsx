@@ -10,6 +10,7 @@ function App() {
 
   const handleGetStartedClick = () => {
     setShowProductList(true);
+    console.log("Product list visibility:", true);
   };
 
   return (
