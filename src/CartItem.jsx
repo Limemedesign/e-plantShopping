@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+import ProductList from './ProductList'; // Adjust the path according to your file structure
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
@@ -9,12 +10,20 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-        CartItem.reduce((total, item) => total + item.quantity * item.cost, 0);
+    return cart.map((i)=>i.quantity * Number(i.cost.replace("$",""))).reduce((total, currVal)=> total + currVal, 0);
+    // CartItem.reduce((total, item) => total + item.quantity * item.cost, 0);
   };
 
-  const handleContinueShopping = (e) => {
-        onContinueShopping();
-  };
+
+    console.log("onContinueShopping function:", onContinueShopping); // Add this line
+
+    const handleContinueShopping = (e) => {
+        e.preventDefault(); // Prevent default action if necessary
+        console.log("Continuing shopping..."); // Log for debugging
+        console.log("Event object:", e); // Check what e is
+        onContinueShopping(); // Call the function passed from the parent
+        //setShowCart(false);
+    };
 
   const handleCheckoutShopping = (e) => {
       alert('Functionality to be added for future reference');
@@ -38,7 +47,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-      return item.quantity * item.cost
+      return (item.quantity * Number(item.cost.replace("$","")));
   };
 
   return (

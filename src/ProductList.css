@@ -250,3 +250,13 @@ body {
         text-align: center; /* Align text to the center */
       }
   }
+
+  .cart-quantity {
+  position: absolute;
+  top: 30px; /* Adjust this value to position it higher or lower */
+  right: 35px; /* Adjust this value for horizontal positioning */
+  color: white; /* Text color */
+  border-radius: 50%; /* Make it circular */
+  padding: 5px; /* Padding around the text */
+  font-size: 25px; /* Font size */
+}
